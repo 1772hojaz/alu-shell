@@ -1,2 +1,2 @@
 #!/bin/bash
-tr 'A-Za-z' 'N-ZA-Mn-za-m'
+\ls -1 | while read -r f; do read -r; echo "$f"; done
