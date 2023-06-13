@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
+# desplay the pid of this executable file
 echo "$$"
