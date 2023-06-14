@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 #displays a list of currently running process
-echo "$(ps -eo user,pid,%cpu,%mem,vsz,rss,tty,stat,lstart,time,command --forest)"
+echo "$(ps -eo user,start_time,cmd --forest --time-format="%a %d %T")"
 
