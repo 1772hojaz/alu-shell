@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 #this program kills the infinity looped file
 # shellcheck disable=SC2009
-process=$(pgrep -f "4-to_infinity_and_beyond")
-kill -15 $process
+kill "$(ps -x | pgrep -f beyond)"
