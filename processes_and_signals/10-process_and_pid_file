@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 #creating a file called /var/run/myscript.pid containg it's pid
+# shellcheck disable=SC2009
+
 function delete() {
     rm /var/run/myscript.pid
     exit
