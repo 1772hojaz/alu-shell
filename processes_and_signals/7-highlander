@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #this program displays to infinity and beyonf
-trap 'echo "I am invincible"' 15
+trap 'echo "I am invincible!!!"' 15
 
 while true;do
 	echo "To infinity and beyond!!!"
