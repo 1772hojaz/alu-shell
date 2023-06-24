@@ -6,14 +6,13 @@ echo $$ >> /var/run/myscript.pid
 
 #displays To infinity and beyond indefinitely
 while true; do
-echo "To infinity and beyond";
-sleep 1
+	echo "To infinity and beyond";
+	sleep 1
 done
 #traping
 trap 'echo I hate the kill command;delete' SIGTERM
 trap 'echo Y U no love me?!;delete' SIGINT
-funtion delete() {
-rm -f /var/run/myscript.pid
-exit
+function delete() {
+	rm -f /var/run/myscript.pid
+	exit
 }
-
