@@ -1,18 +1,14 @@
 #!/usr/bin/env bash
 #creating a file called /var/run/myscript.pid containg it's pid
-# shellcheck disable=SC2009
+function delete() {
+    rm /var/run/holbertonscript.pid
+    exit
+}
+
+trap "echo I hate the kill command;love" SIGTERM
+trap "echo Y U no love me?!;love" SIGINT
 
 echo $$ >> /var/run/myscript.pid
-
-#displays To infinity and beyond indefinitely
-while true; do
-	echo "To infinity and beyond";
-	sleep 1
+while [ true ]; do
+    echo To infinity and beyond;
 done
-#traping
-trap 'echo I hate the kill command;delete' SIGTERM
-trap 'echo Y U no love me?!;delete' SIGINT
-function delete() {
-	rm -f /var/run/myscript.pid
-	exit
-}
