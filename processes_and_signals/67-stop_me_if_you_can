@@ -1,0 +1,3 @@
+#usr/bin/env bash
+#this program stops file 7_highlander
+pkill -15 -f highlander
