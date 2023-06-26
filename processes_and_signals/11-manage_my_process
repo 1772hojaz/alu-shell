@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #this program manage the manage_my_process executable file 
-
+# shellcheck disable=SC2009
 #the start funtion
 
 start() {
