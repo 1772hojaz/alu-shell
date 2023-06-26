@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+#this program manage the manage_my_process executable file 
+
+#the start funtion
+
+function start() {
+	./manage_my_process && echo $$>>/var/run/my_process.pid && echo "manage_my_process started"
+}
+
+#the stop function
+
+function stop() {
+	pkill -f manage && rm -f /var/run/my_process.pid && echo "manage_my_process stopped"
+}
+
+#the restart funtion
+function restart() {
+	stop && start && echo "manage_my_process restarted"
+}
+
+#the welcome message that will  appear on the user's screen
+echo "Usage: manage_my_process {start|stop|restart}: "
+read options
+case $options in
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	restart)
+		restart
+		;;
+	*)
+		echo "Usage: manage_my_process {start|stop|restart}"
+		;;
+esac

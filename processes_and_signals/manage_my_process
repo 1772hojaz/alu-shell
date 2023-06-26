@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#this program indefinately writes I am alive! and in between every I am alive! message , the program will pause for 2 seconds
+while true;do
+	echo "I am alive!"
+	sleep 2
+done
+
