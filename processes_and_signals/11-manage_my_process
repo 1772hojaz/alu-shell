@@ -3,19 +3,25 @@
 
 #the start funtion
 
-function start() {
-	./manage_my_process && echo $$>>/var/run/my_process.pid && echo "manage_my_process started"
+start() {
+	./manage_my_process
+	echo $! > /var/run/my_process.pid
+	echo "manage_my_process started"
 }
 
 #the stop function
 
-function stop() {
-	pkill -f manage && rm -f /var/run/my_process.pid && echo "manage_my_process stopped"
+stop() {
+	kill -9 $(cat /var/run/my_process.pid)
+	rm -f /var/run/my_process.pid
+	echo "manage_my_process stopped"
 }
 
 #the restart funtion
-function restart() {
-	stop && start && echo "manage_my_process restarted"
+restart() {
+	stop
+	start
+	echo "manage_my_process restarted"
 }
 
 #the welcome message that will  appear on the user's screen
