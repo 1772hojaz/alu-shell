@@ -9,8 +9,10 @@ start_fn() {
 
 #the stop funtion
 stop_fn() {
-	pkill -15 -f manage
-	rm -r /var/run/my_process.pid
+	if pgrep "manage_my_process" > /dev/null;then
+		kill $(cat /var/run/my_process.pid)
+	fi
+        rm -r /var/run/my_process.pid
 	echo "manage_my_process stopped"
 }
 
@@ -22,7 +24,7 @@ restart_fn() {
 }
 
 input_pt() {
-	echo "Usage: manage_my_process {start|stop|restart}: "
+	echo "Usage: manage_my_process {start|stop|restart}"
 	
 }
 
