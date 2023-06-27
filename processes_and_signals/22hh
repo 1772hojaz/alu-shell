@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#fjivxnckm ,
+echo "Usage: manage my_process"
+read -r options
