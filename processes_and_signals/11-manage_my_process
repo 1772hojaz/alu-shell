@@ -1,21 +1,21 @@
 #!/usr/bin/env bash
 #this program is desgned to manage the manange_my_process file
 
-start_fn() {
+start() {
+	echo  "manage_my_process started";
 	./manage_my_process > /tmp/my_proicess &
 	echo $! > /var/run/my_process.pid
-	echo manage_my_process started
 }
 
 #the stop funtion
-stop_fn() {
+stop() {
+	echo"manage_my_process stopped";
 	pkill -15 -f manage
 	rm -f /var/run/my_process.pid
-	echo manage_my_process stoped
 }
 
 #the restart funtion
-restart_fn() {
+restart() {
 	stop_fn
 	start_fn
 	echo manage_my_process restarted
@@ -23,19 +23,19 @@ restart_fn() {
 
 input_pt() {
 	echo "Usage: manage_my_process {start|stop|restart}: "
-	read options
+	read -r options
 }
 
 
 case $options in
 	start)
-		start_fn
+		start
 		;;
 	stop)
-		stop_fn
+		stop
 		;;
 	restart)
-		restart_fn
+		restart
 		;;
 	*)
 		input_pt
