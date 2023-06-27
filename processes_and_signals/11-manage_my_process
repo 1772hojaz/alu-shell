@@ -10,7 +10,7 @@ start_fn() {
 #the stop funtion
 stop_fn() {
 	pkill -15 -f manage
-	rm -f /var/run/my_process.pid
+	rm -r /var/run/my_process.pid
 	echo "manage_my_process stopped"
 }
 
@@ -38,6 +38,11 @@ case $1 in
 		restart_fn
 		;;
 	*)
-		input_pt
+		if [[ -z $1 ]]; then
+			input_pt
+		else
+			echo "Usage: manage_my_process {start|stop|restart}"
+		fi
+
 		;;
 esac		
