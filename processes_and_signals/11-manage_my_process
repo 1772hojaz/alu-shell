@@ -1,43 +1,43 @@
 #!/usr/bin/env bash
-#this program manage the manage_my_process executable file 
-# shellcheck disable=SC2009
-#the start funtion
+#this program is desgned to manage the manange_my_process file
 
-start() {
-	echo "manage_my_process started"
-	./manage_my_process
+start_fn() {
+	./manage_my_process > /tmp/my_proicess &
 	echo $! > /var/run/my_process.pid
+	echo manage_my_process started
 }
 
-#the stop function
-
-stop() {
-	kill -9 $(cat /var/run/my_process.pid)
+#the stop funtion
+stop_fn() {
+	pkill -15 -f manage
 	rm -f /var/run/my_process.pid
-	echo "manage_my_process stopped"
+	echo manage_my_process stoped
 }
 
 #the restart funtion
-restart() {
-	stop
-	start
-	echo "manage_my_process restarted"
+restart_fn() {
+	stop_fn
+	start_fn
+	echo manage_my_process restarted
 }
 
-#the welcome message that will  appear on the user's screen
-echo "Usage: manage_my_process {start|stop|restart}: "
-read options
+input_pt() {
+	echo "Usage: manage_my_process {start|stop|restart}: "
+	read options
+}
+
+
 case $options in
 	start)
-		start
+		start_fn
 		;;
 	stop)
-		stop
+		stop_fn
 		;;
 	restart)
-		restart
+		restart_fn
 		;;
 	*)
-		echo "Usage: manage_my_process {start|stop|restart}"
+		input_pt
 		;;
-esac
+esac		
