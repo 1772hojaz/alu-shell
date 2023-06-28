@@ -10,7 +10,7 @@ start_fn() {
 #the stop funtion
 stop_fn() {
 	if pgrep "manage_my_process" > /dev/null;then
-		kill $(cat /var/run/my_process.pid)
+		kill "$(cat /var/run/my_process.pid)"
 	fi
         rm -r /var/run/my_process.pid
 	echo "manage_my_process stopped"
