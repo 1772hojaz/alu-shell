@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #this program is desgned to manage the manange_my_process file
-
+# shellcheck disable=SC2009
 start_fn() {
 	./manage_my_process > /tmp/my_proicess &
 	echo $! > /var/run/my_process.pid
@@ -18,8 +18,12 @@ stop_fn() {
 
 #the restart funtion
 restart_fn() {
-	stop_fn
-	start_fn
+	./manage_my_process > /tmp/my_proicess &
+        echo $! > /var/run/my_process.pid
+        if pgrep "manage_my_process" > /dev/null;then
+		kill $(cat /var/run/my_process.pid)
+        fi
+        rm -r /var/run/my_process.pid
 	echo "manage_my_process restarted"
 }
 
@@ -37,7 +41,8 @@ case $1 in
 		stop_fn
 		;;
 	restart)
-		restart_fn
+		 restart_fn
+
 		;;
 	*)
 		if [[ -z $1 ]]; then
