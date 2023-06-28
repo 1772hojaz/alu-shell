@@ -18,9 +18,7 @@ stop_fn() {
 restart_fn() {
 	./manage_my_process > /tmp/my_proicess &
         echo $! > /var/run/my_process.pid
-        if pgrep "manage_my_process" > /dev/null;then
-		kill "$(cat /var/run/my_process.pid)"
-        fi
+        kill "$(cat /var/run/my_process.pid)"
         rm -r /var/run/my_process.pid
 	echo "manage_my_process restarted"
 }
